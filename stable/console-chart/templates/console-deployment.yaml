@@ -96,6 +96,9 @@ spec:
       - name: {{ template "console.fullname" . }}-console-config
         configMap:
           name: console-config
+      - name: hub-of-hubs-rbac-ca
+        configMap:
+          name: hub-of-hubs-rbac-ca-bundle
       containers:
       - name: console
         volumeMounts:
@@ -103,6 +106,9 @@ spec:
           name: {{ template "console.fullname" . }}-console-certs
         - mountPath: /app/config
           name: {{ template "console.fullname" . }}-console-config
+        - readOnly: true
+          mountPath: /hub-of-hubs-rbac-ca
+          name: hub-of-hubs-rbac-ca
         image: {{ .Values.global.imageOverrides.console }}
         imagePullPolicy: {{ .Values.global.pullPolicy }}
         resources:
@@ -125,6 +131,10 @@ spec:
           value: "https://multicloud-console.{{ .Values.ocpingress }}/multicloud/hub-of-hubs-nonk8s-api"
         - name: CLUSTER_API_URL
           value: https://kubernetes.default.svc:443
+        - name: AUTHORIZATION_URL
+          value: https://hub-of-hubs-rbac.open-cluster-management.svc:8181
+        - name: AUTHORIZATION_CA_BUNDLE_PATH
+          value: /hub-of-hubs-rbac-ca/service-ca.crt
         ports:
         - containerPort: 3000
           protocol: TCP
