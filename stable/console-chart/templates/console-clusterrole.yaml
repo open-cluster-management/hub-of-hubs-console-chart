@@ -119,6 +119,14 @@ rules:
   - managedclustersetbindings
   - clustercurators
 
+- apiGroups:
+  - work.open-cluster-management.io
+  resources:
+  - manifestworks
+  verbs:
+  - list
+  - watch
+
 - verbs:
   - list
   - watch
