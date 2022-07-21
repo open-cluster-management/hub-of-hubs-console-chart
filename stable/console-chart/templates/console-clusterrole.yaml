@@ -119,6 +119,7 @@ rules:
   - managedclustersetbindings
   - clustercurators
   - placementdecisions
+  - placements
 
 - apiGroups:
   - work.open-cluster-management.io
