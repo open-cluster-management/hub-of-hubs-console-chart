@@ -132,7 +132,7 @@ spec:
         - name: CLUSTER_API_URL
           value: https://kubernetes.default.svc:443
         - name: AUTHORIZATION_URL
-          value: https://hub-of-hubs-rbac.open-cluster-management.svc:8181
+          value: https://multicluster-global-hub-rbac.open-cluster-management.svc:8181
         - name: AUTHORIZATION_CA_BUNDLE_PATH
           value: /multicluster-global-hub-rbac-ca/service-ca.crt
         ports:
